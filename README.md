@@ -2,7 +2,7 @@
 Visualization Of Space Transformations Using C++
 
 ## Contributing
-For a guide on how to contribute. Please refer to [Contributing.md](https://github.com/anshulbadhani/Sem-2-Project/CONTRIBUTING.md)
+For a guide on how to contribute. Please refer to [Contributing.md](https://github.com/anshulbadhani/Sem-2-Project/blob/main/CONTRIBUTING.md)
 
 ## Team Members
 - [Ananya Tiwari](https://github.com/ananyatiwari05)
