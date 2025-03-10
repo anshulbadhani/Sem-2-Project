@@ -2,7 +2,7 @@
 Visualization Of Space Transformations Using C++
 
 ## Team Members
-- Ananya Tiwari [https://github.com/ananyatiwari05]
-- (Anshul Badhani)[https://github.com/anshulbadhani]
-- Ayush Chhabra
+- [Ananya Tiwari](https://github.com/ananyatiwari05)
+- [Anshul Badhani](https://github.com/anshulbadhani)
+- [Ayush Chhabra](https://github.com/ayushchhabra30)
 - Meghansh Tambi
