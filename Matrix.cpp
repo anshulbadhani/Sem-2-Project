@@ -8,7 +8,7 @@ const double PI = 3.14159265358979323846;
 template <typename T>
 class Matrix {
 protected:
-    size_t rows, cols;// Matrix dimensions MxN
+    size_t rows, cols; // Matrix dimensions MxN
     T** mat;           // Dynamic allocation
 
 public:
@@ -35,8 +35,6 @@ public:
         }
     }
 
-    virtual void transform(){}
-
     void display() const {
         for (size_t i = 0; i < rows; i++) {
             for (size_t j = 0; j < cols; j++) {
@@ -61,6 +59,34 @@ public:
     size_t getCols() const {
         return cols;
     }
+
+    // Overloaded operator for matrix addition
+    Matrix<T> operator+(const Matrix<T>& other) const {
+        if (rows != other.rows || cols != other.cols) {
+            throw runtime_error("Error: Matrix sizes do not match for addition!");
+        }
+        Matrix<T> result(rows, cols);
+        for (size_t i = 0; i < rows; i++) {
+            for (size_t j = 0; j < cols; j++) {
+                result.mat[i][j] = mat[i][j] + other.mat[i][j];
+            }
+        }
+        return result;
+    }
+
+    // Overloaded operator for matrix subtraction
+    Matrix<T> operator-(const Matrix<T>& other) const {
+        if (rows != other.rows || cols != other.cols) {
+            throw runtime_error("Error: Matrix sizes do not match for subtraction!");
+        }
+        Matrix<T> result(rows, cols);
+        for (size_t i = 0; i < rows; i++) {
+            for (size_t j = 0; j < cols; j++) {
+                result.mat[i][j] = mat[i][j] - other.mat[i][j];
+            }
+        }
+        return result;
+    }
 };
 
 // Derived class for Shearing (only valid for at least 2x2 matrices)
@@ -74,7 +100,7 @@ public:
         }
     }
 
-    void transform() override {
+    void transform() {
         cout << "Shearing Matrix:" << endl;
         this->display();
     }
@@ -90,65 +116,19 @@ public:
         this->mat[1][0] = sin(radians); this->mat[1][1] = cos(radians);
     }
 
-    void transform() override {
+    void transform() {
         cout << "Rotation Matrix (2x2 only):" << endl;
         this->display();
     }
 };
 
-// Derived class for Addition (only for same-sized matrices MxN)
-template <typename T>
-class AddMatrix : public Matrix<T> {
-public:
-    AddMatrix(const Matrix<T>& m1, const Matrix<T>& m2) : Matrix<T>(m1.getRows(), m1.getCols()) {
-        if (m1.getRows() != m2.getRows() || m1.getCols() != m2.getCols()) {
-            cout << "Error: Matrix sizes do not match for addition!" << endl;
-            return;
-        }
-        for (size_t i = 0; i < this->getRows(); i++) {
-            for (size_t j = 0; j < this->getCols(); j++) {
-                this->mat[i][j] = m1.getElement(i, j) + m2.getElement(i, j);
-            }
-        }
-    }
-
-    void transform() override {
-        cout << "Addition Result:" << endl;
-        this->display();
-    }
-};
-
-// Derived class for Subtraction (only for same-sized matrices MxN)
-template <typename T>
-class SubtractMatrix : public Matrix<T> {
-public:
-    SubtractMatrix(const Matrix<T>& m1, const Matrix<T>& m2) : Matrix<T>(m1.getRows(), m1.getCols()) {
-        if (m1.getRows() != m2.getRows() || m1.getCols() != m2.getCols()) {
-            cout << "Error: Matrix sizes do not match for subtraction!" << endl;
-            return;
-        }
-        for (size_t i = 0; i < this->getRows(); i++) {
-            for (size_t j = 0; j < this->getCols(); j++) {
-                this->mat[i][j] = m1.getElement(i, j) - m2.getElement(i, j);
-            }
-        }
-    }
-
-    void transform() override {
-        cout << "Subtraction Result:" << endl;
-        this->display();
-    }
-};
-
 int main() {
-
     size_t M, N;
     cout << "Enter number of rows (M): ";
     cin >> M;
     cout << "Enter number of columns (N): ";
     cin >> N;
 
-    // Use template for different data types (int, float, double, etc.)
     Matrix<double>* mat1 = new Matrix<double>(M, N);
     Matrix<double>* mat2 = new Matrix<double>(M, N);
 
@@ -198,22 +178,22 @@ int main() {
                 break;
             }
             case 3: {
-                if (M == mat2->getRows() && N == mat2->getCols()) {
-                    Matrix<double>* add = new AddMatrix<double>(*mat1, *mat2);
-                    add->transform();
-                    delete add;
-                } else {
-                    cout << "Addition requires matrices of the same size.\n";
+                try {
+                    Matrix<double> result = *mat1 + *mat2;
+                    cout << "Addition Result:\n";
+                    result.display();
+                } catch (const runtime_error& e) {
+                    cout << e.what() << endl;
                 }
                 break;
             }
             case 4: {
-                if (M == mat2->getRows() && N == mat2->getCols()) {
-                    Matrix<double>* subtract = new SubtractMatrix<double>(*mat1, *mat2);
-                    subtract->transform();
-                    delete subtract;
-                } else {
-                    cout << "Subtraction requires matrices of the same size.\n";
+                try {
+                    Matrix<double> result = *mat1 - *mat2;
+                    cout << "Subtraction Result:\n";
+                    result.display();
+                } catch (const runtime_error& e) {
+                    cout << e.what() << endl;
                 }
                 break;
             }
