@@ -1,3 +1,0 @@
-/home/anshul/Dev/projects/Sem-2-Project/build/CMakeFiles/transform_vis.dir
-/home/anshul/Dev/projects/Sem-2-Project/build/CMakeFiles/edit_cache.dir
-/home/anshul/Dev/projects/Sem-2-Project/build/CMakeFiles/rebuild_cache.dir

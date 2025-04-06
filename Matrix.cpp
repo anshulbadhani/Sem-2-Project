@@ -36,17 +36,7 @@ public:
     }
 
     void display() const {
-        // checking whether the matrix requested to display is nullptr or not
-        if (!mat){
-            cout << "Uninitialized Matrix\n";
-            return;
-        }
-
         for (size_t i = 0; i < rows; i++) {
-            if (!mat[i]) {
-                cout << "Uninitialized Row: " << i << endl;
-                return;
-            }
             for (size_t j = 0; j < cols; j++) {
                 cout << mat[i][j] << " ";
             }
@@ -69,8 +59,6 @@ public:
     size_t getCols() const {
         return cols;
     }
-
-    virtual void transform() {}
 
     // Overloaded operator for matrix addition
     Matrix<T> operator+(const Matrix<T>& other) const {
