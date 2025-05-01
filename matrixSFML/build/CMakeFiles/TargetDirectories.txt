@@ -1,0 +1,3 @@
+/Users/ananyatiwari/C++ codes/matrixSFML/build/CMakeFiles/matrixSFML.dir
+/Users/ananyatiwari/C++ codes/matrixSFML/build/CMakeFiles/edit_cache.dir
+/Users/ananyatiwari/C++ codes/matrixSFML/build/CMakeFiles/rebuild_cache.dir
