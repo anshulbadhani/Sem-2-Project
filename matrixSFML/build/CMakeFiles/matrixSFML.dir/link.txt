@@ -1,1 +1,1 @@
-/usr/bin/c++  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/matrixSFML.dir/main.cpp.o -o matrixSFML   -L/opt/homebrew/Cellar/sfml@2/2.6.2_1/lib  -Wl,-rpath,/opt/homebrew/Cellar/sfml@2/2.6.2_1/lib -lsfml-graphics -lsfml-window -lsfml-system -framework Cocoa -framework IOKit -framework CoreFoundation -framework CoreGraphics -framework ApplicationServices -framework AudioToolbox -framework OpenAL
+/usr/bin/c++ CMakeFiles/matrixSFML.dir/main.cpp.o -o matrixSFML  -lsfml-graphics -lsfml-window -lsfml-system 
